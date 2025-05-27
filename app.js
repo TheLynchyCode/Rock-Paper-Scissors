@@ -3,12 +3,16 @@ const input = document.querySelector('input');
 const btn = document.querySelector('button');
 const para = document.querySelector('.choices');
 const options = ['scissors', 'paper', 'rock'];
+const startOverBtn = document.createElement('button');
 let computerChoice;
 let userChoice;
 let compScoreText = document.createElement('p');
 let userScoreText = document.createElement('p');
 let userScore = 0;
 let computerScore = 0;
+
+startOverBtn.textContent = 'Start Over';
+document.body.appendChild(startOverBtn);
 
 btn.addEventListener('click', function () {
   const index = Math.floor(Math.random() * options.length);
@@ -32,10 +36,32 @@ btn.addEventListener('click', function () {
     computerScore += 1;
   }
   document.body.appendChild(para);
-  input.value = '';
-  input.focus();
   compScoreText.textContent = `Computer Score: ${computerScore}`;
   userScoreText.textContent = `Your Score: ${userScore}`;
   document.body.appendChild(compScoreText);
   document.body.appendChild(userScoreText);
+  if (computerScore === 5 && userScore < 5) {
+    compScoreText.textContent = `GAME OVER! Computer wins ${computerScore} to ${userScore}`;
+    userScoreText.textContent = '';
+    para.textContent = '';
+  } else if (userScore === 5 && computerScore < 5) {
+    userScoreText.textContent = `GAME OVER! You win! ${userScore} to ${computerScore}`;
+    compScoreText.textContent = '';
+    para.textContent = '';
+  }
+  input.value = '';
+  input.focus();
 });
+
+function startOver() {
+  userScoreText.textContent = '';
+  compScoreText.textContent = '';
+  userScore = 0;
+  computerScore = 0;
+  para.textContent = '';
+  document.body.removeChild(startOverBtn);
+  input.focus();
+  document.body.appendChild(startOverBtn);
+}
+
+startOverBtn.addEventListener('click', startOver);
