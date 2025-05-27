@@ -11,8 +11,8 @@ let userScoreText = document.createElement('p');
 let userScore = 0;
 let computerScore = 0;
 
-startOverBtn.textContent = 'Start Over';
-document.body.appendChild(startOverBtn);
+// startOverBtn.textContent = 'Start Over';
+// document.body.appendChild(startOverBtn);
 
 btn.addEventListener('click', function () {
   const index = Math.floor(Math.random() * options.length);
