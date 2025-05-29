@@ -15,6 +15,19 @@ const paperBtn = document.querySelector('.paper');
 const rockBtn = document.querySelector('.rock');
 const scores = document.getElementById('scores');
 
+function playAgain() {
+  const playAgain = document.createElement('button');
+  playAgain.textContent = 'Play Again!';
+  document.body.appendChild(playAgain);
+  playAgain.addEventListener('click', function () {
+    para.textContent = '';
+    userScore = 0;
+    computerScore = 0;
+    userScoreText.textContent = `User Score: ${userScore}`;
+    compScoreText.textContent = `Computer Score: ${computerScore}`;
+  });
+}
+
 scissorsBtn.addEventListener('click', function () {
   userChoice = 'scissors';
   const index = Math.floor(Math.random() * options.length);
@@ -68,6 +81,13 @@ function showScores() {
   compScoreText.textContent = `Computer Score: ${computerScore}`;
   scores.appendChild(userScoreText);
   scores.appendChild(compScoreText);
+  if (userScore === 5) {
+    para.textContent = `Game Over, YOU WIN! You were first to win 5 rounds!`;
+    playAgain();
+  } else if (computerScore === 5) {
+    para.textContent = `Game over, YOU LOSE! Computer was first to win 5 rounds`;
+    playAgain();
+  }
 }
 
 // startOverBtn.textContent = 'Start Over';
