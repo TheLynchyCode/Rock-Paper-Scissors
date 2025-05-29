@@ -25,6 +25,7 @@ function playAgain() {
     computerScore = 0;
     userScoreText.textContent = `User Score: ${userScore}`;
     compScoreText.textContent = `Computer Score: ${computerScore}`;
+    document.body.removeChild(playAgain);
   });
 }
 
