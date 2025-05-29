@@ -13,6 +13,7 @@ let computerScore = 0;
 const scissorsBtn = document.querySelector('.scissors');
 const paperBtn = document.querySelector('.paper');
 const rockBtn = document.querySelector('.rock');
+const scores = document.getElementById('scores');
 
 scissorsBtn.addEventListener('click', function () {
   userChoice = 'scissors';
@@ -20,11 +21,14 @@ scissorsBtn.addEventListener('click', function () {
   computerChoice = options[index];
   if (computerChoice === 'paper') {
     para.textContent = `You win! You selected ${userChoice}, and the computer chose ${computerChoice}!`;
+    userScore += 1;
   } else if (computerChoice === userChoice) {
     para.textContent = `It's a draw! Computer chose ${computerChoice}, and you selected ${userChoice}!`;
   } else {
     para.textContent = `You lose! Computer chose ${computerChoice}, and you selected ${userChoice}!`;
+    computerScore += 1;
   }
+  showScores();
 });
 
 rockBtn.addEventListener('click', function () {
@@ -33,11 +37,14 @@ rockBtn.addEventListener('click', function () {
   computerChoice = options[index];
   if (computerChoice === 'scissors') {
     para.textContent = `You win! You selected ${userChoice}, and the computer chose ${computerChoice}!`;
+    userScore += 1;
   } else if (computerChoice === userChoice) {
     para.textContent = `It's a draw! Computer chose ${computerChoice}, and you selected ${userChoice}!`;
   } else {
     para.textContent = `You lose! Computer chose ${computerChoice}, and you selected ${userChoice}!`;
+    computerScore += 1;
   }
+  showScores();
 });
 
 paperBtn.addEventListener('click', function () {
@@ -46,12 +53,22 @@ paperBtn.addEventListener('click', function () {
   computerChoice = options[index];
   if (computerChoice === 'rock') {
     para.textContent = `You win! You selected ${userChoice}, and the computer chose ${computerChoice}!`;
+    userScore += 1;
   } else if (computerChoice === userChoice) {
     para.textContent = `It's a draw! Computer chose ${computerChoice}, and you selected ${userChoice}!`;
   } else {
     para.textContent = `You lose! Computer chose ${computerChoice}, and you selected ${userChoice}!`;
+    computerScore += 1;
   }
+  showScores();
 });
+
+function showScores() {
+  userScoreText.textContent = `User Score: ${userScore}`;
+  compScoreText.textContent = `Computer Score: ${computerScore}`;
+  scores.appendChild(userScoreText);
+  scores.appendChild(compScoreText);
+}
 
 // startOverBtn.textContent = 'Start Over';
 // document.body.appendChild(startOverBtn);
